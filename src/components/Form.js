@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { uuid } from 'uuidv4';
-const Form = () => {
-  const [reviews, setReviews] = useState([]);
-  const [form, setForm] = useState({
-    restaurant: '',
-    review: '',
-    id: uuid(),
-  });
+
+const Form = ({ form, reviews, setForm, setReviews }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
@@ -22,9 +17,11 @@ const Form = () => {
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <h5>Write a Review:</h5>
-      <label htmlFor="restaurant">Restaurant: </label>
+      <label htmlFor="restaurant">
+        <b>Restaurant: </b>
+      </label>
       <input
         onChange={handleChange}
         value={form.restaurant}
@@ -33,7 +30,9 @@ const Form = () => {
         id="restaurant"
         name="restaurant"
       />
-      <label htmlFor="restaurant">Review: </label>
+      <label htmlFor="restaurant">
+        <b>Review: </b>
+      </label>
       <textarea
         onChange={handleChange}
         value={form.review}
