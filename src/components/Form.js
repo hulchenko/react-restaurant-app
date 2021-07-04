@@ -1,7 +1,7 @@
 import React from 'react';
 import { uuid } from 'uuidv4';
 
-const Form = ({ form, reviews, setForm, setReviews }) => {
+const Form = ({ editing, form, reviews, setEditing, setForm, setReviews }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
@@ -16,9 +16,24 @@ const Form = ({ form, reviews, setForm, setReviews }) => {
       id: uuid(),
     });
   };
+
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    setEditing(false);
+    const updatedReviews = reviews.map((review) =>
+      review.id === form.id ? form : review
+    );
+    setReviews(updatedReviews);
+    setForm({
+      restaurant: '',
+      review: '',
+      id: uuid(),
+    });
+  };
+
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h5>Write a Review:</h5>
+    <form className="form" onSubmit={editing ? handleUpdate : handleSubmit}>
+      <h2>Write a Review</h2>
       <label htmlFor="restaurant">
         <b>Restaurant: </b>
       </label>
@@ -41,7 +56,7 @@ const Form = ({ form, reviews, setForm, setReviews }) => {
         id="review"
         name="review"
       />
-      <button type="submit">Submit</button>
+      <button type="submit">{editing ? 'Update' : 'Submit'}</button>
     </form>
   );
 };

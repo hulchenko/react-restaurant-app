@@ -6,6 +6,7 @@ import { uuid } from 'uuidv4';
 
 function App() {
   const [reviews, setReviews] = useState([]);
+  const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({
     restaurant: '',
     review: '',
@@ -15,12 +16,19 @@ function App() {
     <div className="app">
       <h1>Restaurant App</h1>
       <Form
+        editing={editing}
         form={form}
         reviews={reviews}
         setForm={setForm}
         setReviews={setReviews}
+        setEditing={setEditing}
       />
-      <Reviews reviews={reviews} />
+      <Reviews
+        reviews={reviews}
+        setForm={setForm}
+        setEditing={setEditing}
+        setReviews={setReviews}
+      />
     </div>
   );
 }
