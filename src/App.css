@@ -43,3 +43,15 @@ button {
   width: 20rem;
   border-radius: 5px;
 }
+
+.rating {
+  display: flex;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+}

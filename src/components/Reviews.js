@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewItem from './ReviewItem';
+import StarRating from './Rating';
 
-const Reviews = ({ reviews, setReviews, setForm, setEditing }) => {
+const Reviews = ({ reviews, setReviews, setForm, setEditing, value }) => {
   const handleDelete = (id) => {
     const updatedReviews = reviews.filter((review) => review.id !== id);
     setReviews(updatedReviews);

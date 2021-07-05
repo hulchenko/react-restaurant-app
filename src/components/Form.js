@@ -1,7 +1,16 @@
 import React from 'react';
 import { uuid } from 'uuidv4';
+import StarRating from './Rating';
 
-const Form = ({ editing, form, reviews, setEditing, setForm, setReviews }) => {
+const Form = ({
+  editing,
+  form,
+  reviews,
+  setEditing,
+  setForm,
+  setReviews,
+  ratingValue,
+}) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
@@ -56,6 +65,10 @@ const Form = ({ editing, form, reviews, setEditing, setForm, setReviews }) => {
         id="review"
         name="review"
       />
+      <b>Rating</b>
+      <p>
+        <StarRating value={ratingValue} />
+      </p>
       <button type="submit">{editing ? 'Update' : 'Submit'}</button>
     </form>
   );
